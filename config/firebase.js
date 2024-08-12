@@ -1,14 +1,24 @@
 const firebase = require("firebase/app");
-require("firebase/auth") ;
-
 const admin = require("firebase-admin");
+
+const {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} = require("firebase/auth");
+
 const credentials = require("../serviceAccountKey.json");
 
-const firebaseConfig = require("../firebase-config.json");
-firebase.initializeApp(firebaseConfig);
-
 admin.initializeApp({
-    credential: admin.credential.cert(credentials)
+  credential: admin.credential.cert(credentials),
 });
 
-module.exports = {firebase, admin};
+const firebaseConfig = require("../firebase-config.json");
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+module.exports = {
+  getAuth,
+  createUserWithEmailAndPassword,
+  admin,
+};
