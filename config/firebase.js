@@ -20,5 +20,6 @@ firebase.initializeApp(firebaseConfig);
 module.exports = {
   getAuth,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   admin,
 };
