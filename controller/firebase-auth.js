@@ -20,9 +20,11 @@ const registerUser = (req, res) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      const idToken = userCredential._tokenResponse.idToken;
       res.status(200).json({
         message: "User registered successfully!",
         uid: user.uid,
+        idToken,
       });
     })
     .catch((error) => {

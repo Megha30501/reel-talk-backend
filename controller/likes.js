@@ -6,7 +6,7 @@ const addLike = async (req, res) => {
   const userId = req.user.uid;
 
   try {
-    if (!postId || !commentId) {
+    if (!postId && !commentId) {
       return res.status(400).send("postId or commentId is required");
     }
 
@@ -17,6 +17,7 @@ const addLike = async (req, res) => {
     const likeRef = db.collection("Likes").doc(postId);
 
     const likeData = await likeRef.set({
+      userId,
       postId: postId || null,
       commentId: commentId || null,
       communityId,
