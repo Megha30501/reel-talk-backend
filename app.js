@@ -1,12 +1,16 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const router = require("./routes/auth");
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(router);
+
+const authRoute = require("./routes/auth");
+const likeRoute = require("./routes/likes");
+
+app.use("/user", authRoute);
+app.use("/likes", likeRoute);
 
 const PORT = 3000;
 

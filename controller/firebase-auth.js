@@ -52,7 +52,7 @@ const loginUser = (req, res) => {
         });
         res
           .status(200)
-          .json({ message: "User logged in successfully", userCredential });
+          .json({ message: "User logged in successfully", idToken });
       } else {
         res.status(500).json({ error: "Internal Server Error" });
       }
