@@ -5,6 +5,7 @@ const {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updatePassword,
 } = require("firebase/auth");
 
 const credentials = require("../serviceAccountKey.json");
@@ -21,5 +22,6 @@ module.exports = {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updatePassword,
   admin,
 };

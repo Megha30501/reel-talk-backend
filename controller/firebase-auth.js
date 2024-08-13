@@ -2,8 +2,11 @@ const {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updatePassword,
 } = require("../config/firebase");
 const auth = getAuth();
+
+// New User Registration
 
 const registerUser = (req, res) => {
   const { email, password } = req.body;
@@ -17,7 +20,7 @@ const registerUser = (req, res) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      res.status(201).json({
+      res.status(200).json({
         message: "User registered successfully!",
         uid: user.uid,
       });
@@ -28,6 +31,8 @@ const registerUser = (req, res) => {
       res.status(500).json({ error: errorMessage });
     });
 };
+
+// User Login
 
 const loginUser = (req, res) => {
   const { email, password } = req.body;
@@ -60,7 +65,40 @@ const loginUser = (req, res) => {
     });
 };
 
+// Update Password
+
+const changePassword = (req, res) => {
+  const { email, oldPassword, newPassword } = req.body;
+
+  if (!email || !oldPassword || !newPassword) {
+    return res.status(400).json({
+      email: "Email is required",
+      oldPassword: "Old password is required",
+      newPassword: "New password is required",
+    });
+  }
+
+  signInWithEmailAndPassword(auth, email, oldPassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      updatePassword(user, newPassword)
+        .then(() => {
+          res.status(200).json({ message: "Password updated successfully" });
+        })
+        .catch((error) => {
+          console.error("Error updating password:", error);
+          res.status(500).json({ error: "Error updating password" });
+        });
+    })
+    .catch((error) => {
+      console.error("Error signing in:", error);
+      res.status(500).json({ error: "Invalid email or password" });
+    });
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  changePassword,
 };
