@@ -1,6 +1,7 @@
 const { admin } = require("../config/firebase");
 const db = admin.firestore();
 
+// to add likes to post or commnets tied to community
 const addLike = async (req, res) => {
   const { postId, commentId, communityId } = req.body;
   const userId = req.user.uid;
@@ -31,6 +32,7 @@ const addLike = async (req, res) => {
   }
 };
 
+// to get all the post or comments with likes
 const getLike = async (req, res) => {
   const userId = req.user.uid;
 

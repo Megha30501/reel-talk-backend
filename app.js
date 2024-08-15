@@ -8,9 +8,11 @@ app.use(cookieParser());
 
 const authRoute = require("./routes/auth");
 const likeRoute = require("./routes/likes");
+const movieRoute = require("./routes/movie");
 
 app.use("/user", authRoute);
 app.use("/likes", likeRoute);
+app.use("/", movieRoute);
 
 const PORT = 3000;
 
