@@ -4,22 +4,11 @@ This project is a Node.js backend that provides user authentication, movie retri
 
 ## 🚀 Getting Started
 
-### Table of Contents
-
-- [Setup](#setup)
-- [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Firebase Setup](#firebase-setup)
-- [Running the Project](#running-the-project)
-- [API Documentation](#api-documentation)
-
-### Setup
-
 #### Make sure you have the following installed on your local system:
 
-- installed and configured Git.
+- Git
 - Node.js
-- NPM (Node Packet Manager)
+- NPM (Node Package Manager)
 
 
 ### Installation
@@ -116,22 +105,24 @@ This project is a Node.js backend that provides user authentication, movie retri
 ### API Endpoints 
 
  **Headers:** `{ "Authorization": "<your_token>" }`
- The token will be generated at registeration or login time.
+ 
+ The token will be generated at registration or login time.
  
 - **Like Post or Content:** `POST /likes/add-like`
   - **Body:**   `{"postId": "", "commentId: "", "communityId" : "" }`
     
   - Either PostId or CommentId can be null.   
 - **Get Post or Content:** `GET /likes/get-like`
+    - Users will get all the posts or comments they've liked.
     
 
 ### Movies
 
 ### Design Decisions
 
-- **TMDb API Integration**: The movie database is used to retrive the 100 movie list.
+- **TMDb API Integration**: The movie database is used to retrieve the 100 movie list.
    
 ### API Endpoints
 
 - **Get Movies:** `GET /movies`
-- Retrieves a list of 100 popular movies from TMDb.
+    - Retrieves a list of 100 popular movies from TMDb.
