@@ -79,7 +79,12 @@ const changePassword = (req, res) => {
       newPassword: "New password is required",
     });
   }
-
+  // Check if old and new passwords are the same
+  if (oldPassword === newPassword) {
+    return res
+      .status(400)
+      .json({ error: "New password must be different from the old password" });
+  }
   signInWithEmailAndPassword(auth, email, oldPassword)
     .then((userCredential) => {
       const user = userCredential.user;
